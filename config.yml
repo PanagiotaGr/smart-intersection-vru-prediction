@@ -10,11 +10,9 @@ storage:
   topics_dir: "topics"
 
 arxiv:
-  # arXiv Atom API endpoint
   endpoint: "http://export.arxiv.org/api/query"
-  # Πόσα να τραβάει ανά topic (αρκετά για να πιάσει “σήμερα” + buffer)
   max_results_per_topic: 80
-  # Φιλτράρισμα κατηγοριών (προαιρετικό). Αν το αφήσεις κενό, δεν φιλτράρει με categories.
+  days_back: 3
   allowed_categories:
     - "cs.CV"
     - "cs.RO"
@@ -23,23 +21,16 @@ arxiv:
     - "cs.LG"
 
 filters:
-  # Global include/exclude (εφαρμόζεται σε όλα)
   include_keywords:
     - "trajectory prediction"
     - "motion prediction"
-    - "intention"
+    - "trajectory forecasting"
+    - "motion forecasting"
+    - "vulnerable road user"
     - "pedestrian"
     - "cyclist"
-    - "vulnerable road user"
-    - "VRU"
-    - "crosswalk"
     - "intersection"
-    - "interaction"
-    - "risk"
-    - "collision"
-    - "micromobility"
-    - "bike"
-    - "bicycle"
+    - "crosswalk"
   exclude_keywords:
     - "traffic flow"
     - "travel time"
@@ -52,6 +43,7 @@ filters:
     - "lane detection"
     - "weather"
     - "rain removal"
+
 
 topics:
   - name: "Pedestrian Trajectory Prediction"
