@@ -16,15 +16,19 @@ This repository supports:
 
 ## Latest
 <!-- LATEST:START -->
-- Updated on: **(auto)**
-- Latest digest: `(auto)`
+- Updated on: **2026-01-15**
+- Latest digest: `digests/2026-01-15.md`
 <!-- LATEST:END -->
 
 ## Topic Navigator
 <!-- TOPICS:START -->
 | Topic | Latest Update | Papers | Link |
 |------|--------------:|------:|------|
-| (auto) | (auto) | (auto) | (auto) |
+| Pedestrian Trajectory Prediction | 2026-01-15 | 17 | [Pedestrian Trajectory Prediction](topics/pedestrian_trajectory_prediction.md) |
+| Cyclist & Micromobility Prediction | 2026-01-15 | 1 | [Cyclist & Micromobility Prediction](topics/cyclist_micromobility_prediction.md) |
+| Interaction-aware & Social Models | 2026-01-15 | 34 | [Interaction-aware & Social Models](topics/interaction_aware_models.md) |
+| Intention & Crossing Behavior | 2026-01-15 | 14 | [Intention & Crossing Behavior](topics/intention_crossing_behavior.md) |
+| Risk-aware / Safety / Collision Prediction | 2026-01-15 | 66 | [Risk-aware / Safety / Collision Prediction](topics/risk_safety_collision.md) |
 <!-- TOPICS:END -->
 
 ## How it works
