@@ -24,11 +24,11 @@ This repository supports:
 <!-- TOPICS:START -->
 | Topic | Latest Update | Papers | Link |
 |------|--------------:|------:|------|
-| Pedestrian Trajectory Prediction | 2026-01-16 | 0 | [Pedestrian Trajectory Prediction](topics/pedestrian_trajectory_prediction.md) |
-| Cyclist & Micromobility Prediction | 2026-01-16 | 0 | [Cyclist & Micromobility Prediction](topics/cyclist_micromobility_prediction.md) |
-| Interaction-aware & Social Models | 2026-01-16 | 3 | [Interaction-aware & Social Models](topics/interaction_aware_models.md) |
-| Intention & Crossing Behavior | 2026-01-16 | 1 | [Intention & Crossing Behavior](topics/intention_crossing_behavior.md) |
-| Risk-aware / Safety / Collision Prediction | 2026-01-16 | 3 | [Risk-aware / Safety / Collision Prediction](topics/risk_safety_collision.md) |
+| Pedestrian Trajectory Prediction | 2026-01-16 | 85 | [Pedestrian Trajectory Prediction](topics/pedestrian_trajectory_prediction.md) |
+| Cyclist & Micromobility Prediction | 2026-01-16 | 32 | [Cyclist & Micromobility Prediction](topics/cyclist_micromobility_prediction.md) |
+| Interaction-aware & Social Models | 2026-01-16 | 97 | [Interaction-aware & Social Models](topics/interaction_aware_models.md) |
+| Intention & Crossing Behavior | 2026-01-16 | 68 | [Intention & Crossing Behavior](topics/intention_crossing_behavior.md) |
+| Risk-aware / Safety / Collision Prediction | 2026-01-16 | 119 | [Risk-aware / Safety / Collision Prediction](topics/risk_safety_collision.md) |
 <!-- TOPICS:END -->
 
 ## How it works
