@@ -2286,6 +2286,23 @@
       ],
       "pdf_url": "https://arxiv.org/pdf/1706.05904v2",
       "abs_url": "http://arxiv.org/abs/1706.05904v2"
+    },
+    "2601.10554v1": {
+      "arxiv_id": "2601.10554v1",
+      "title": "DeepUrban: Interaction-Aware Trajectory Prediction and Planning for Automated Driving by Aerial Imagery",
+      "authors": [
+        "Constantin Selzer",
+        "Fabian B. Flohr"
+      ],
+      "summary": "The efficacy of autonomous driving systems hinges critically on robust prediction and planning capabilities. However, current benchmarks are impeded by a notable scarcity of scenarios featuring dense traffic, which is essential for understanding and modeling complex interactions among road users. To address this gap, we collaborated with our industrial partner, DeepScenario, to develop DeepUrban-a new drone dataset designed to enhance trajectory prediction and planning benchmarks focusing on dense urban settings. DeepUrban provides a rich collection of 3D traffic objects, extracted from high-resolution images captured over urban intersections at approximately 100 meters altitude. The dataset is further enriched with comprehensive map and scene information to support advanced modeling and simulation tasks. We evaluate state-of-the-art (SOTA) prediction and planning methods, and conducted experiments on generalization capabilities. Our findings demonstrate that adding DeepUrban to nuScenes can boost the accuracy of vehicle predictions and planning, achieving improvements up to 44.1 % / 44.3% on the ADE / FDE metrics. Website: https://iv.ee.hm.edu/deepurban",
+      "published_utc": "2026-01-15T16:18:42Z",
+      "updated_utc": "2026-01-15T16:18:42Z",
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2601.10554v1",
+      "abs_url": "http://arxiv.org/abs/2601.10554v1"
     }
   },
   "topics": {
@@ -2355,9 +2372,10 @@
         "1808.06887v5",
         "1807.09995v1",
         "1803.03577v1",
-        "1705.02445v1"
+        "1705.02445v1",
+        "2601.10554v1"
       ],
-      "latest_update": "2026-01-15"
+      "latest_update": "2026-01-16"
     },
     "intention_crossing_behavior": {
       "name": "Intention & Crossing Behavior",

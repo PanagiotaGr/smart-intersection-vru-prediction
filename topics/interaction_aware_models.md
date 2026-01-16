@@ -1,11 +1,14 @@
 # Interaction-aware & Social Models
 
-Updated: `2026-01-15` (timezone: `Europe/Athens`)
+Updated: `2026-01-16` (timezone: `Europe/Athens`)
 
-Total papers tracked: **34**
+Total papers tracked: **35**
 
 ---
 
+- **DeepUrban: Interaction-Aware Trajectory Prediction and Planning for Automated Driving by Aerial Imagery**  
+  *Constantin Selzer, Fabian B. Flohr*  
+  Published: `2026-01-15` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.10554v1) · [pdf](https://arxiv.org/pdf/2601.10554v1) · id: `2601.10554v1`
 - **CogDrive: Cognition-Driven Multimodal Prediction-Planning Fusion for Safe Autonomy**  
   *Heye Huang, Yibin Yang, Mingfeng Fan, Haoran Wang, Xiaocong Zhao, Jianqiang Wang*  
   Published: `2025-12-02` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2512.02777v1) · [pdf](https://arxiv.org/pdf/2512.02777v1) · id: `2512.02777v1`
