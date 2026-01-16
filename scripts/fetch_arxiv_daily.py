@@ -5,9 +5,9 @@ import argparse
 import json
 import re
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 from urllib.parse import quote
 
 import feedparser
@@ -18,7 +18,7 @@ from dateutil import parser as dtparser
 try:
     from zoneinfo import ZoneInfo
 except ImportError:
-    ZoneInfo = None  # Python <3.9 not supported in Actions anyway
+    ZoneInfo = None  # Python <3.9 not supported in GH Actions anyway
 
 
 # ----------------------------
@@ -71,20 +71,31 @@ def write_json(path: Path, obj: Any) -> None:
 
 
 def normalize_text(x: str) -> str:
-    return re.sub(r"\s+", " ", x).strip().lower()
+    return re.sub(r"\s+", " ", (x or "")).strip().lower()
 
 
-def today_in_tz(tz_name: str) -> datetime:
+def now_in_tz(tz_name: str) -> datetime:
     if ZoneInfo is None:
-        # Fallback: UTC
-        return datetime.utcnow()
+        return datetime.utcnow().replace(tzinfo=timezone.utc)
     return datetime.now(ZoneInfo(tz_name))
 
 
-def to_tz_date(dt_utc: datetime, tz_name: str) -> datetime.date:
+def to_tz_date(dt_utc: datetime, tz_name: str):
     if ZoneInfo is None:
         return dt_utc.date()
-    return dt_utc.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo(tz_name)).date()
+    if dt_utc.tzinfo is None:
+        dt_utc = dt_utc.replace(tzinfo=timezone.utc)
+    return dt_utc.astimezone(ZoneInfo(tz_name)).date()
+
+
+def safe_isoparse(s: str) -> datetime | None:
+    try:
+        dt = dtparser.isoparse(s)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        return None
 
 
 # ----------------------------
@@ -92,8 +103,6 @@ def to_tz_date(dt_utc: datetime, tz_name: str) -> datetime.date:
 # ----------------------------
 
 def build_arxiv_url(endpoint: str, search_query: str, max_results: int) -> str:
-    # We request submittedDate sorting for stable ordering
-    # arXiv API uses Atom feed.
     q = quote(search_query, safe="():\"' ORAND+-_*")
     return (
         f"{endpoint}"
@@ -106,34 +115,31 @@ def build_arxiv_url(endpoint: str, search_query: str, max_results: int) -> str:
 
 
 def parse_arxiv_entry(entry: Any) -> Paper:
-    # entry.id is like http://arxiv.org/abs/XXXX.YYYYYvN
-    abs_url = entry.get("id", "").strip()
+    abs_url = (entry.get("id", "") or "").strip()
     arxiv_id = abs_url.rsplit("/", 1)[-1]
 
-    title = re.sub(r"\s+", " ", entry.get("title", "").strip())
-    summary = re.sub(r"\s+", " ", entry.get("summary", "").strip())
+    title = re.sub(r"\s+", " ", (entry.get("title", "") or "").strip())
+    summary = re.sub(r"\s+", " ", (entry.get("summary", "") or "").strip())
 
-    authors = []
+    authors: List[str] = []
     for a in entry.get("authors", []) or []:
-        name = a.get("name", "").strip()
+        name = (a.get("name", "") or "").strip()
         if name:
             authors.append(name)
 
-    published = entry.get("published", "").strip()
-    updated = entry.get("updated", "").strip()
+    published = (entry.get("published", "") or "").strip()
+    updated = (entry.get("updated", "") or "").strip()
 
-    # categories / primary category
     tags = entry.get("tags", []) or []
     categories = [t.get("term", "").strip() for t in tags if t.get("term")]
     primary_category = entry.get("arxiv_primary_category", {}).get("term", "").strip()
     if not primary_category and categories:
         primary_category = categories[0]
 
-    # pdf url
     pdf_url = ""
     for link in entry.get("links", []) or []:
         if link.get("type") == "application/pdf":
-            pdf_url = link.get("href", "").strip()
+            pdf_url = (link.get("href", "") or "").strip()
             break
     if not pdf_url:
         pdf_url = abs_url.replace("/abs/", "/pdf/")
@@ -157,41 +163,71 @@ def fetch_arxiv(endpoint: str, search_query: str, max_results: int, timeout_s: i
     r = requests.get(url, timeout=timeout_s)
     r.raise_for_status()
     feed = feedparser.parse(r.text)
+
     papers: List[Paper] = []
     for entry in feed.entries:
         try:
             papers.append(parse_arxiv_entry(entry))
         except Exception:
-            # Skip malformed entry (rare) to avoid breaking the run
             continue
     return papers
 
 
 # ----------------------------
-# Filtering & selection
+# Filtering & ranking
 # ----------------------------
 
-def keyword_filter(
-    paper: Paper,
-    include_keywords: List[str],
-    exclude_keywords: List[str],
-) -> bool:
-    text = normalize_text(paper.title + " " + paper.summary)
+def compile_terms(terms: List[str]) -> List[re.Pattern]:
+    pats: List[re.Pattern] = []
+    for t in terms or []:
+        t = normalize_text(t)
+        if not t:
+            continue
+        if " " in t or "-" in t:
+            pats.append(re.compile(re.escape(t), re.IGNORECASE))
+        else:
+            pats.append(re.compile(rf"\b{re.escape(t)}\b", re.IGNORECASE))
+    return pats
 
-    # Exclude wins immediately
-    for kw in exclude_keywords:
-        if normalize_text(kw) in text:
+
+PRED_HINTS = compile_terms([
+    "trajectory prediction", "motion prediction",
+    "trajectory forecasting", "motion forecasting",
+    "prediction", "forecasting"
+])
+
+
+def soft_exclude_tracking_segmentation(text: str) -> bool:
+    """
+    Κόβει tracking/segmentation papers ΜΟΝΟ όταν δεν υπάρχει ένδειξη prediction/forecasting.
+    Αυτό μειώνει false negatives σε papers που κάνουν prediction αλλά αναφέρουν segmentation/tracking.
+    """
+    has_pred = any(p.search(text) for p in PRED_HINTS)
+    has_tracking = ("multi-object tracking" in text) or ("object tracking" in text) or ("tracking" in text)
+    has_seg = ("semantic segmentation" in text) or ("segmentation" in text)
+    return (has_tracking or has_seg) and (not has_pred)
+
+
+def keyword_filter(text: str, include_keywords: List[str], exclude_keywords: List[str]) -> bool:
+    """
+    - exclude: σκληρό (αν βρει exclude -> reject)
+    - include: αν υπάρχει λίστα, θέλει τουλάχιστον 1 match
+    """
+    text = normalize_text(text)
+
+    if soft_exclude_tracking_segmentation(text):
+        return False
+
+    exc = compile_terms(exclude_keywords)
+    for p in exc:
+        if p.search(text):
             return False
 
-    # If include list is empty => accept
     if not include_keywords:
         return True
 
-    # Require at least one include keyword hit
-    for kw in include_keywords:
-        if normalize_text(kw) in text:
-            return True
-    return False
+    inc = compile_terms(include_keywords)
+    return any(p.search(text) for p in inc)
 
 
 def category_filter(paper: Paper, allowed_categories: List[str]) -> bool:
@@ -201,15 +237,30 @@ def category_filter(paper: Paper, allowed_categories: List[str]) -> bool:
     return any(c in cats for c in allowed_categories)
 
 
-def sort_papers_deterministic(papers: List[Paper]) -> List[Paper]:
-    def key(p: Paper):
-        # published desc, then title asc, then id asc
-        try:
-            pub = dtparser.isoparse(p.published_utc)
-        except Exception:
-            pub = datetime(1970, 1, 1)
-        return (-int(pub.timestamp()), p.title.lower(), p.arxiv_id)
+def within_days_back(paper: Paper, days_back: int, now_utc: datetime) -> bool:
+    pub = safe_isoparse(paper.published_utc)
+    if pub is None:
+        return False
+    cutoff = now_utc - timedelta(days=days_back)
+    return pub >= cutoff
 
+
+def boost_score(paper: Paper, boost_keywords: List[str]) -> int:
+    if not boost_keywords:
+        return 0
+    text = normalize_text(paper.title + " " + paper.summary)
+    score = 0
+    for kw in boost_keywords:
+        kw = normalize_text(kw)
+        if kw and (kw in text):
+            score += 1
+    return score
+
+
+def sort_with_boost(papers: List[Paper], boost_keywords: List[str]) -> List[Paper]:
+    def key(p: Paper):
+        pub = safe_isoparse(p.published_utc) or datetime(1970, 1, 1, tzinfo=timezone.utc)
+        return (-boost_score(p, boost_keywords), -int(pub.timestamp()), p.title.lower(), p.arxiv_id)
     return sorted(papers, key=key)
 
 
@@ -252,19 +303,14 @@ def dict_to_paper(d: Dict[str, Any]) -> Paper:
 # ----------------------------
 
 def render_paper_md(p: Paper) -> str:
-    # Compact, thesis-friendly
-    # One bullet with links + metadata.
-    try:
-        pub = dtparser.isoparse(p.published_utc).date().isoformat()
-    except Exception:
-        pub = "unknown-date"
+    pub_dt = safe_isoparse(p.published_utc)
+    pub = pub_dt.date().isoformat() if pub_dt else "unknown-date"
 
     authors = ", ".join(p.authors[:8])
     if len(p.authors) > 8:
         authors += " et al."
 
     title = p.title.replace("\n", " ").strip()
-
     return (
         f"- **{title}**  \n"
         f"  *{authors}*  \n"
@@ -273,12 +319,12 @@ def render_paper_md(p: Paper) -> str:
     )
 
 
-def render_topic_page(topic_name: str, topic_slug: str, papers: List[Paper], tz_name: str) -> str:
-    now = today_in_tz(tz_name)
+def render_topic_page(topic_name: str, papers: List[Paper], tz_name: str) -> str:
+    now = now_in_tz(tz_name)
     header = (
         f"# {topic_name}\n\n"
         f"Updated: `{now.date().isoformat()}` (timezone: `{tz_name}`)\n\n"
-        f"Total papers tracked: **{len(papers)}**\n\n"
+        f"Total papers tracked (within window): **{len(papers)}**\n\n"
         f"---\n\n"
     )
     body = "".join(render_paper_md(p) for p in papers)
@@ -286,7 +332,7 @@ def render_topic_page(topic_name: str, topic_slug: str, papers: List[Paper], tz_
 
 
 def render_digest(digest_date: str, topic_sections: List[Tuple[str, List[Paper]]], tz_name: str) -> str:
-    now = today_in_tz(tz_name)
+    now = now_in_tz(tz_name)
     lines = [
         f"# Daily ArXiv Digest — {digest_date}\n",
         f"Generated: `{now.isoformat(timespec='seconds')}` (timezone: `{tz_name}`)\n",
@@ -317,6 +363,13 @@ LATEST_MARKER_START = "<!-- LATEST:START -->"
 LATEST_MARKER_END = "<!-- LATEST:END -->"
 
 
+def replace_block(full_text: str, start: str, end: str, new_block: str) -> str:
+    if start in full_text and end in full_text:
+        pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
+        return pattern.sub(new_block, full_text, count=1)
+    return full_text.rstrip() + "\n\n" + new_block + "\n"
+
+
 def update_readme(
     readme_path: Path,
     topics_info: List[Dict[str, Any]],
@@ -328,7 +381,6 @@ def update_readme(
 
     text = readme_path.read_text(encoding="utf-8")
 
-    # Latest block
     latest_block = (
         f"{LATEST_MARKER_START}\n"
         f"- Updated on: **{latest_date}**\n"
@@ -337,7 +389,6 @@ def update_readme(
     )
     text = replace_block(text, LATEST_MARKER_START, LATEST_MARKER_END, latest_block)
 
-    # Topics table block
     table_lines = []
     table_lines.append("| Topic | Latest Update | Papers | Link |")
     table_lines.append("|------|--------------:|------:|------|")
@@ -355,14 +406,6 @@ def update_readme(
     readme_path.write_text(text, encoding="utf-8")
 
 
-def replace_block(full_text: str, start: str, end: str, new_block: str) -> str:
-    if start in full_text and end in full_text:
-        pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
-        return pattern.sub(new_block, full_text, count=1)
-    # If markers missing, append at end
-    return full_text.rstrip() + "\n\n" + new_block + "\n"
-
-
 # ----------------------------
 # Main
 # ----------------------------
@@ -370,10 +413,10 @@ def replace_block(full_text: str, start: str, end: str, new_block: str) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True, help="Path to config.yml")
+    ap.add_argument("--debug", action="store_true", help="Print per-topic filtering counts")
     args = ap.parse_args()
 
-    config_path = Path(args.config)
-    cfg = load_yaml(config_path)
+    cfg = load_yaml(Path(args.config))
 
     tz_name = cfg.get("project", {}).get("timezone", "UTC")
 
@@ -388,53 +431,71 @@ def main() -> int:
     digests_dir.mkdir(parents=True, exist_ok=True)
     topics_dir.mkdir(parents=True, exist_ok=True)
 
-    endpoint = cfg.get("arxiv", {}).get("endpoint", "http://export.arxiv.org/api/query")
-    max_results = int(cfg.get("arxiv", {}).get("max_results_per_topic", 80))
-    allowed_categories = cfg.get("arxiv", {}).get("allowed_categories", []) or []
+    arxiv_cfg = cfg.get("arxiv", {}) or {}
+    endpoint = arxiv_cfg.get("endpoint", "http://export.arxiv.org/api/query")
+    max_results_per_topic = int(arxiv_cfg.get("max_results_per_topic", 80))
+    days_back = int(arxiv_cfg.get("days_back", 3))
+    allowed_categories = arxiv_cfg.get("allowed_categories", []) or []
 
-    global_inc = cfg.get("filters", {}).get("include_keywords", []) or []
-    global_exc = cfg.get("filters", {}).get("exclude_keywords", []) or []
+    fetch_multiplier = int(arxiv_cfg.get("fetch_multiplier", 8))
+    hard_cap_results = int(arxiv_cfg.get("hard_cap_results", 400))
+    fetch_n = min(max_results_per_topic * fetch_multiplier, hard_cap_results)
+
+    global_inc = (cfg.get("filters", {}) or {}).get("include_keywords", []) or []
+    global_exc = (cfg.get("filters", {}) or {}).get("exclude_keywords", []) or []
 
     topics = cfg.get("topics", []) or []
     if not topics:
         raise SystemExit("No topics defined in config.yml")
 
-    # Load DB
+    max_daily_per_topic = int((cfg.get("output", {}) or {}).get("max_daily_per_topic", 12))
+
     db = read_json(db_file, default={"papers": {}, "topics": {}})
 
-    # Compute "today" in desired timezone
-    now_tz = today_in_tz(tz_name)
+    now_tz = now_in_tz(tz_name)
     digest_date = now_tz.date().isoformat()
+    now_utc = datetime.now(timezone.utc)
 
-    # We'll collect "today's" matched papers per topic
     topic_sections: List[Tuple[str, List[Paper]]] = []
     topics_info: List[Dict[str, Any]] = []
-
-    max_daily_per_topic = int(cfg.get("output", {}).get("max_daily_per_topic", 12))
 
     for t in topics:
         name = t["name"]
         slug = t.get("slug") or slugify(name)
         query = t["query"]
 
-        t_inc = (t.get("include_keywords") or [])
-        t_exc = (t.get("exclude_keywords") or [])
+        t_inc = t.get("include_keywords") or []
+        t_exc = t.get("exclude_keywords") or []
+        boost_kw = t.get("boost_keywords") or []
 
-        # Fetch from arXiv
-        fetched = fetch_arxiv(endpoint, query, max_results=max_results)
+        fetched = fetch_arxiv(endpoint, query, max_results=fetch_n)
 
-        # Filter by category + keywords
+        # Pipeline counts (debug)
+        c_fetched = len(fetched)
+        c_days = c_cat = c_kw = 0
+
         filtered: List[Paper] = []
         for p in fetched:
+            if not within_days_back(p, days_back, now_utc):
+                continue
+            c_days += 1
+
             if not category_filter(p, allowed_categories):
                 continue
-            if not keyword_filter(p, global_inc + t_inc, global_exc + t_exc):
+            c_cat += 1
+
+            text = p.title + " " + p.summary
+            if not keyword_filter(text, global_inc + t_inc, global_exc + t_exc):
                 continue
+            c_kw += 1
+
             filtered.append(p)
 
-        filtered = sort_papers_deterministic(filtered)
+        # Rank with boost first, then deterministic
+        filtered = sort_with_boost(filtered, boost_kw)
 
-        # Insert into DB (dedupe by arxiv_id)
+        # Keep only top N for "today digest selection" later, but store all (within window) in topic page/DB.
+        # (Topic page stays within days_back window; DB stores those ids, deduped)
         topic_key = slug
         if "topics" not in db:
             db["topics"] = {}
@@ -447,50 +508,48 @@ def main() -> int:
         for p in filtered:
             if p.arxiv_id not in db["papers"]:
                 db["papers"][p.arxiv_id] = paper_to_dict(p)
-
             if p.arxiv_id not in seen_ids:
                 new_ids_for_topic.append(p.arxiv_id)
                 seen_ids.add(p.arxiv_id)
 
-        # Update per-topic list
         if new_ids_for_topic:
             db["topics"][topic_key]["papers"].extend(new_ids_for_topic)
 
-        # Rebuild per-topic papers list (Paper objects) and sort deterministically
+        # Rebuild topic paper objects (only those within days_back window)
         topic_papers: List[Paper] = []
         for pid in db["topics"][topic_key]["papers"]:
-            try:
-                topic_papers.append(dict_to_paper(db["papers"][pid]))
-            except Exception:
+            d = db["papers"].get(pid)
+            if not d:
                 continue
-        topic_papers = sort_papers_deterministic(topic_papers)
+            p = dict_to_paper(d)
+            if within_days_back(p, days_back, now_utc):
+                topic_papers.append(p)
 
-        # Update latest_update for topic
+        # Sort topic page with boost too (consistent with digest logic)
+        topic_papers = sort_with_boost(topic_papers, boost_kw)
+
+        # Update latest_update
         latest_update = db["topics"][topic_key].get("latest_update", "1970-01-01")
-        if digest_date > latest_update and (new_ids_for_topic or latest_update == "1970-01-01"):
-            # Even if no new today, keep latest_update as last time we actually ran successfully today:
+        if digest_date > latest_update:
             db["topics"][topic_key]["latest_update"] = digest_date
             latest_update = digest_date
 
         # Write topic page
-        topic_md = render_topic_page(name, slug, topic_papers, tz_name)
-        topic_path = topics_dir / f"{slug}.md"
-        topic_path.write_text(topic_md, encoding="utf-8")
+        topic_md = render_topic_page(name, topic_papers, tz_name)
+        (topics_dir / f"{slug}.md").write_text(topic_md, encoding="utf-8")
 
-        # Select today papers for digest: match published date == today (in tz)
+        # Today's papers for digest (published date == today in tz)
         todays: List[Paper] = []
         for p in filtered:
-            try:
-                pub_utc = dtparser.isoparse(p.published_utc)
-            except Exception:
+            pub = safe_isoparse(p.published_utc)
+            if pub is None:
                 continue
-            if to_tz_date(pub_utc, tz_name).isoformat() == digest_date:
+            if to_tz_date(pub, tz_name).isoformat() == digest_date:
                 todays.append(p)
 
-        todays = sort_papers_deterministic(todays)[:max_daily_per_topic]
+        todays = sort_with_boost(todays, boost_kw)[:max_daily_per_topic]
         topic_sections.append((name, todays))
 
-        # Topic navigator info
         topics_info.append(
             {
                 "name": name,
@@ -499,6 +558,12 @@ def main() -> int:
                 "link": f"[{name}](topics/{slug}.md)",
             }
         )
+
+        if args.debug:
+            print(
+                f"[{slug}] fetched={c_fetched} | within_days_back={c_days} | "
+                f"category_ok={c_cat} | keyword_ok={c_kw} | final_today={len(todays)}"
+            )
 
     # Write digest
     digest_path = digests_dir / f"{digest_date}.md"
@@ -513,7 +578,7 @@ def main() -> int:
         readme_path=Path("README.md"),
         topics_info=topics_info,
         latest_date=digest_date,
-        latest_digest_relpath=f"digests/{digest_date}.md",
+        latest_digest_relpath=f"{digests_dir.as_posix()}/{digest_date}.md",
     )
 
     return 0
