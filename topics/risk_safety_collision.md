@@ -1,11 +1,14 @@
 # Risk-aware / Safety / Collision Prediction
 
-Updated: `2026-01-28` (timezone: `Europe/Athens`)
+Updated: `2026-01-29` (timezone: `Europe/Athens`)
 
-Total papers tracked: **121**
+Total papers tracked: **122**
 
 ---
 
+- **Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models**  
+  *Qing Lyu, Zhe Fu, Alexandre Bayen*  
+  Published: `2026-01-28` · Category: `cs.LG` · [abs](http://arxiv.org/abs/2601.20367v1) · [pdf](https://arxiv.org/pdf/2601.20367v1) · id: `2601.20367v1`
 - **Proactive Local-Minima-Free Robot Navigation: Blending Motion Prediction with Safe Control**  
   *Yifan Xue, Ze Zhang, Knut Åkesson, Nadia Figueroa*  
   Published: `2026-01-15` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.10233v1) · [pdf](https://arxiv.org/pdf/2601.10233v1) · id: `2601.10233v1`

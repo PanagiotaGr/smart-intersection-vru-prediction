@@ -1,11 +1,17 @@
 # Interaction-aware & Social Models
 
-Updated: `2026-01-28` (timezone: `Europe/Athens`)
+Updated: `2026-01-29` (timezone: `Europe/Athens`)
 
-Total papers tracked: **100**
+Total papers tracked: **103**
 
 ---
 
+- **Li-ViP3D++: Query-Gated Deformable Camera-LiDAR Fusion for End-to-End Perception and Trajectory Prediction**  
+  *Matej Halinkovic, Nina Masarykova, Alexey Vinel, Marek Galinski*  
+  Published: `2026-01-28` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.20720v1) · [pdf](https://arxiv.org/pdf/2601.20720v1) · id: `2601.20720v1`
+- **Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models**  
+  *Qing Lyu, Zhe Fu, Alexandre Bayen*  
+  Published: `2026-01-28` · Category: `cs.LG` · [abs](http://arxiv.org/abs/2601.20367v1) · [pdf](https://arxiv.org/pdf/2601.20367v1) · id: `2601.20367v1`
 - **CARLA-Round: A Multi-Factor Simulation Dataset for Roundabout Trajectory Prediction**  
   *Xiaotong Zhou, Zhenhui Yuan, Yi Han, Tianhua Xu, Laurence T. Yang*  
   Published: `2026-01-17` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.12119v1) · [pdf](https://arxiv.org/pdf/2601.12119v1) · id: `2601.12119v1`
@@ -87,6 +93,9 @@ Total papers tracked: **100**
 - **RacketVision: A Multiple Racket Sports Benchmark for Unified Ball and Racket Analysis**  
   *Linfeng Dong, Yuchen Yang, Hao Wu, Wei Wang, Yuenan Hou, Zhihang Zhong, Xiao Sun*  
   Published: `2025-11-21` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2511.17045v2) · [pdf](https://arxiv.org/pdf/2511.17045v2) · id: `2511.17045v2`
+- **RacketVision: A Multiple Racket Sports Benchmark for Unified Ball and Racket Analysis**  
+  *Linfeng Dong, Yuchen Yang, Hao Wu, Wei Wang, Yuenan Hou, Zhihang Zhong, Xiao Sun*  
+  Published: `2025-11-21` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2511.17045v3) · [pdf](https://arxiv.org/pdf/2511.17045v3) · id: `2511.17045v3`
 - **FOOTPASS: A Multi-Modal Multi-Agent Tactical Context Dataset for Play-by-Play Action Spotting in Soccer Broadcast Videos**  
   *Jeremie Ochin, Raphael Chekroun, Bogdan Stanciulescu, Sotiris Manitsaris*  
   Published: `2025-11-20` · Category: `cs.AI` · [abs](http://arxiv.org/abs/2511.16183v1) · [pdf](https://arxiv.org/pdf/2511.16183v1) · id: `2511.16183v1`
