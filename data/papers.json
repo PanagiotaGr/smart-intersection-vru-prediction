@@ -6667,6 +6667,49 @@
       ],
       "pdf_url": "https://arxiv.org/pdf/2511.17045v3",
       "abs_url": "http://arxiv.org/abs/2511.17045v3"
+    },
+    "2601.21504v1": {
+      "arxiv_id": "2601.21504v1",
+      "title": "Don't double it: Efficient Agent Prediction in Occlusions",
+      "authors": [
+        "Anna Rothenhäusler",
+        "Markus Mazzola",
+        "Andreas Look",
+        "Raghu Rajan",
+        "Joschka Bödecker"
+      ],
+      "summary": "Occluded traffic agents pose a significant challenge for autonomous vehicles, as hidden pedestrians or vehicles can appear unexpectedly, yet this problem remains understudied. Existing learning-based methods, while capable of inferring the presence of hidden agents, often produce redundant occupancy predictions where a single agent is identified multiple times. This issue complicates downstream planning and increases computational load. To address this, we introduce MatchInformer, a novel transformer-based approach that builds on the state-of-the-art SceneInformer architecture. Our method improves upon prior work by integrating Hungarian Matching, a state-of-the-art object matching algorithm from object detection, into the training process to enforce a one-to-one correspondence between predictions and ground truth, thereby reducing redundancy. We further refine trajectory forecasts by decoupling an agent's heading from its motion, a strategy that improves the accuracy and interpretability of predicted paths. To better handle class imbalances, we propose using the Matthews Correlation Coefficient (MCC) to evaluate occupancy predictions. By considering all entries in the confusion matrix, MCC provides a robust measure even in sparse or imbalanced scenarios. Experiments on the Waymo Open Motion Dataset demonstrate that our approach improves reasoning about occluded regions and produces more accurate trajectory forecasts than prior methods.",
+      "published_utc": "2026-01-29T10:22:38Z",
+      "updated_utc": "2026-01-29T10:22:38Z",
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2601.21504v1",
+      "abs_url": "http://arxiv.org/abs/2601.21504v1"
+    },
+    "2601.21346v1": {
+      "arxiv_id": "2601.21346v1",
+      "title": "HPTune: Hierarchical Proactive Tuning for Collision-Free Model Predictive Control",
+      "authors": [
+        "Wei Zuo",
+        "Chengyang Li",
+        "Yikun Wang",
+        "Bingyang Cheng",
+        "Zeyi Ren",
+        "Shuai Wang",
+        "Derrick Wing Kwan Ng",
+        "Yik-Chung Wu"
+      ],
+      "summary": "Parameter tuning is a powerful approach to enhance adaptability in model predictive control (MPC) motion planners. However, existing methods typically operate in a myopic fashion that only evaluates executed actions, leading to inefficient parameter updates due to the sparsity of failure events (e.g., obstacle nearness or collision). To cope with this issue, we propose to extend evaluation from executed to non-executed actions, yielding a hierarchical proactive tuning (HPTune) framework that combines both a fast-level tuning and a slow-level tuning. The fast one adopts risk indicators of predictive closing speed and predictive proximity distance, and the slow one leverages an extended evaluation loss for closed-loop backpropagation. Additionally, we integrate HPTune with the Doppler LiDAR that provides obstacle velocities apart from position-only measurements for enhanced motion predictions, thus facilitating the implementation of HPTune. Extensive experiments on high-fidelity simulator demonstrate that HPTune achieves efficient MPC tuning and outperforms various baseline schemes in complex environments. It is found that HPTune enables situation-tailored motion planning by formulating a safe, agile collision avoidance strategy.",
+      "published_utc": "2026-01-29T07:15:39Z",
+      "updated_utc": "2026-01-29T07:15:39Z",
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2601.21346v1",
+      "abs_url": "http://arxiv.org/abs/2601.21346v1"
     }
   },
   "topics": {
@@ -6757,9 +6800,10 @@
         "2406.00749v1",
         "2405.18945v1",
         "2405.17680v2",
-        "2405.07164v1"
+        "2405.07164v1",
+        "2601.21504v1"
       ],
-      "latest_update": "2026-01-16"
+      "latest_update": "2026-01-30"
     },
     "cyclist_micromobility_prediction": {
       "name": "Cyclist & Micromobility Prediction",
@@ -6904,9 +6948,10 @@
         "2512.10350v4",
         "2601.20720v1",
         "2601.20367v1",
-        "2511.17045v3"
+        "2511.17045v3",
+        "2601.21504v1"
       ],
-      "latest_update": "2026-01-29"
+      "latest_update": "2026-01-30"
     },
     "intention_crossing_behavior": {
       "name": "Intention & Crossing Behavior",
@@ -7107,9 +7152,10 @@
         "2506.11419v1",
         "2508.10427v3",
         "2512.02368v2",
-        "2601.20367v1"
+        "2601.20367v1",
+        "2601.21346v1"
       ],
-      "latest_update": "2026-01-29"
+      "latest_update": "2026-01-30"
     }
   }
 }

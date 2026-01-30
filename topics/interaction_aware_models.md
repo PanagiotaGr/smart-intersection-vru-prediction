@@ -1,11 +1,14 @@
 # Interaction-aware & Social Models
 
-Updated: `2026-01-29` (timezone: `Europe/Athens`)
+Updated: `2026-01-30` (timezone: `Europe/Athens`)
 
-Total papers tracked: **103**
+Total papers tracked: **104**
 
 ---
 
+- **Don't double it: Efficient Agent Prediction in Occlusions**  
+  *Anna Rothenhäusler, Markus Mazzola, Andreas Look, Raghu Rajan, Joschka Bödecker*  
+  Published: `2026-01-29` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.21504v1) · [pdf](https://arxiv.org/pdf/2601.21504v1) · id: `2601.21504v1`
 - **Li-ViP3D++: Query-Gated Deformable Camera-LiDAR Fusion for End-to-End Perception and Trajectory Prediction**  
   *Matej Halinkovic, Nina Masarykova, Alexey Vinel, Marek Galinski*  
   Published: `2026-01-28` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.20720v1) · [pdf](https://arxiv.org/pdf/2601.20720v1) · id: `2601.20720v1`

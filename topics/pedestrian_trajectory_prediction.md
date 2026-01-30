@@ -1,11 +1,14 @@
 # Pedestrian Trajectory Prediction
 
-Updated: `2026-01-29` (timezone: `Europe/Athens`)
+Updated: `2026-01-30` (timezone: `Europe/Athens`)
 
-Total papers tracked: **85**
+Total papers tracked: **86**
 
 ---
 
+- **Don't double it: Efficient Agent Prediction in Occlusions**  
+  *Anna Rothenhäusler, Markus Mazzola, Andreas Look, Raghu Rajan, Joschka Bödecker*  
+  Published: `2026-01-29` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.21504v1) · [pdf](https://arxiv.org/pdf/2601.21504v1) · id: `2601.21504v1`
 - **Reverberation: Learning the Latencies Before Forecasting Trajectories**  
   *Conghao Wong, Ziqian Zou, Beihao Xia, Xinge You*  
   Published: `2025-11-14` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2511.11164v2) · [pdf](https://arxiv.org/pdf/2511.11164v2) · id: `2511.11164v2`

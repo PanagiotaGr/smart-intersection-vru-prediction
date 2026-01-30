@@ -1,11 +1,14 @@
 # Risk-aware / Safety / Collision Prediction
 
-Updated: `2026-01-29` (timezone: `Europe/Athens`)
+Updated: `2026-01-30` (timezone: `Europe/Athens`)
 
-Total papers tracked: **122**
+Total papers tracked: **123**
 
 ---
 
+- **HPTune: Hierarchical Proactive Tuning for Collision-Free Model Predictive Control**  
+  *Wei Zuo, Chengyang Li, Yikun Wang, Bingyang Cheng, Zeyi Ren, Shuai Wang, Derrick Wing Kwan Ng, Yik-Chung Wu*  
+  Published: `2026-01-29` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.21346v1) · [pdf](https://arxiv.org/pdf/2601.21346v1) · id: `2601.21346v1`
 - **Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models**  
   *Qing Lyu, Zhe Fu, Alexandre Bayen*  
   Published: `2026-01-28` · Category: `cs.LG` · [abs](http://arxiv.org/abs/2601.20367v1) · [pdf](https://arxiv.org/pdf/2601.20367v1) · id: `2601.20367v1`
