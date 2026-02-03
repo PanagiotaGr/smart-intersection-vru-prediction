@@ -1,11 +1,14 @@
 # Intention & Crossing Behavior
 
-Updated: `2026-02-02` (timezone: `Europe/Athens`)
+Updated: `2026-02-03` (timezone: `Europe/Athens`)
 
-Total papers tracked: **69**
+Total papers tracked: **70**
 
 ---
 
+- **HERMES: A Holistic End-to-End Risk-Aware Multimodal Embodied System with Vision-Language Models for Long-Tail Autonomous Driving**  
+  *Weizhe Tang, Junwei You, Jiaxi Liu, Zhaoyi Wang, Rui Gan, Zilin Huang, Feng Wei, Bin Ran*  
+  Published: `2026-02-01` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2602.00993v1) · [pdf](https://arxiv.org/pdf/2602.00993v1) · id: `2602.00993v1`
 - **BikeActions: An Open Platform and Benchmark for Cyclist-Centric VRU Action Recognition**  
   *Max A. Buettner, Kanak Mazumder, Luca Koecher, Mario Finkbeiner, Sebastian Niebler, Fabian B. Flohr*  
   Published: `2026-01-15` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.10521v1) · [pdf](https://arxiv.org/pdf/2601.10521v1) · id: `2601.10521v1`

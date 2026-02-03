@@ -6727,6 +6727,51 @@
       ],
       "pdf_url": "https://arxiv.org/pdf/2512.10350v5",
       "abs_url": "http://arxiv.org/abs/2512.10350v5"
+    },
+    "2602.01329v1": {
+      "arxiv_id": "2602.01329v1",
+      "title": "FlowCast: Trajectory Forecasting for Scalable Zero-Cost Speculative Flow Matching",
+      "authors": [
+        "Divya Jyoti Bajpai",
+        "Shubham Agarwal",
+        "Apoorv Saxena",
+        "Kuldeep Kulkarni",
+        "Subrata Mitra",
+        "Manjesh Kumar Hanawal"
+      ],
+      "summary": "Flow Matching (FM) has recently emerged as a powerful approach for high-quality visual generation. However, their prohibitively slow inference due to a large number of denoising steps limits their potential use in real-time or interactive applications. Existing acceleration methods, like distillation, truncation, or consistency training, either degrade quality, incur costly retraining, or lack generalization. We propose FlowCast, a training-free speculative generation framework that accelerates inference by exploiting the fact that FM models are trained to preserve constant velocity. FlowCast speculates future velocity by extrapolating current velocity without incurring additional time cost, and accepts it if it is within a mean-squared error threshold. This constant-velocity forecasting allows redundant steps in stable regions to be aggressively skipped while retaining precision in complex ones. FlowCast is a plug-and-play framework that integrates seamlessly with any FM model and requires no auxiliary networks. We also present a theoretical analysis and bound the worst-case deviation between speculative and full FM trajectories. Empirical evaluations demonstrate that FlowCast achieves $>2.5\\times$ speedup in image generation, video generation, and editing tasks, outperforming existing baselines with no quality loss as compared to standard full generation.",
+      "published_utc": "2026-02-01T16:50:15Z",
+      "updated_utc": "2026-02-01T16:50:15Z",
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2602.01329v1",
+      "abs_url": "http://arxiv.org/abs/2602.01329v1"
+    },
+    "2602.00993v1": {
+      "arxiv_id": "2602.00993v1",
+      "title": "HERMES: A Holistic End-to-End Risk-Aware Multimodal Embodied System with Vision-Language Models for Long-Tail Autonomous Driving",
+      "authors": [
+        "Weizhe Tang",
+        "Junwei You",
+        "Jiaxi Liu",
+        "Zhaoyi Wang",
+        "Rui Gan",
+        "Zilin Huang",
+        "Feng Wei",
+        "Bin Ran"
+      ],
+      "summary": "End-to-end autonomous driving models increasingly benefit from large vision--language models for semantic understanding, yet ensuring safe and accurate operation under long-tail conditions remains challenging. These challenges are particularly prominent in long-tail mixed-traffic scenarios, where autonomous vehicles must interact with heterogeneous road users, including human-driven vehicles and vulnerable road users, under complex and uncertain conditions. This paper proposes HERMES, a holistic risk-aware end-to-end multimodal driving framework designed to inject explicit long-tail risk cues into trajectory planning. HERMES employs a foundation-model-assisted annotation pipeline to produce structured Long-Tail Scene Context and Long-Tail Planning Context, capturing hazard-centric cues together with maneuver intent and safety preference, and uses these signals to guide end-to-end planning. HERMES further introduces a Tri-Modal Driving Module that fuses multi-view perception, historical motion cues, and semantic guidance, ensuring risk-aware accurate trajectory planning under long-tail scenarios. Experiments on the real-world long-tail dataset demonstrate that HERMES consistently outperforms representative end-to-end and VLM-driven baselines under long-tail mixed-traffic scenarios. Ablation studies verify the complementary contributions of key components.",
+      "published_utc": "2026-02-01T03:15:08Z",
+      "updated_utc": "2026-02-01T03:15:08Z",
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2602.00993v1",
+      "abs_url": "http://arxiv.org/abs/2602.00993v1"
     }
   },
   "topics": {
@@ -6967,9 +7012,10 @@
         "2601.20367v1",
         "2511.17045v3",
         "2601.21504v1",
-        "2512.10350v5"
+        "2512.10350v5",
+        "2602.01329v1"
       ],
-      "latest_update": "2026-02-02"
+      "latest_update": "2026-02-03"
     },
     "intention_crossing_behavior": {
       "name": "Intention & Crossing Behavior",
@@ -7042,9 +7088,10 @@
         "2403.06774v1",
         "2402.19002v2",
         "2402.12810v3",
-        "2601.10521v2"
+        "2601.10521v2",
+        "2602.00993v1"
       ],
-      "latest_update": "2026-01-21"
+      "latest_update": "2026-02-03"
     },
     "risk_safety_collision": {
       "name": "Risk-aware / Safety / Collision Prediction",

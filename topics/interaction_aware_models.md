@@ -1,11 +1,14 @@
 # Interaction-aware & Social Models
 
-Updated: `2026-02-02` (timezone: `Europe/Athens`)
+Updated: `2026-02-03` (timezone: `Europe/Athens`)
 
-Total papers tracked: **105**
+Total papers tracked: **106**
 
 ---
 
+- **FlowCast: Trajectory Forecasting for Scalable Zero-Cost Speculative Flow Matching**  
+  *Divya Jyoti Bajpai, Shubham Agarwal, Apoorv Saxena, Kuldeep Kulkarni, Subrata Mitra, Manjesh Kumar Hanawal*  
+  Published: `2026-02-01` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2602.01329v1) · [pdf](https://arxiv.org/pdf/2602.01329v1) · id: `2602.01329v1`
 - **Don't double it: Efficient Agent Prediction in Occlusions**  
   *Anna Rothenhäusler, Markus Mazzola, Andreas Look, Raghu Rajan, Joschka Bödecker*  
   Published: `2026-01-29` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.21504v1) · [pdf](https://arxiv.org/pdf/2601.21504v1) · id: `2601.21504v1`
