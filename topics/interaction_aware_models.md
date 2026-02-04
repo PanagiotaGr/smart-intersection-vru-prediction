@@ -1,11 +1,14 @@
 # Interaction-aware & Social Models
 
-Updated: `2026-02-03` (timezone: `Europe/Athens`)
+Updated: `2026-02-04` (timezone: `Europe/Athens`)
 
-Total papers tracked: **106**
+Total papers tracked: **108**
 
 ---
 
+- **PlanTRansformer: Unified Prediction and Planning with Goal-conditioned Transformer**  
+  *Constantin Selzer, Fabina B. Flohr*  
+  Published: `2026-02-03` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2602.03376v1) · [pdf](https://arxiv.org/pdf/2602.03376v1) · id: `2602.03376v1`
 - **FlowCast: Trajectory Forecasting for Scalable Zero-Cost Speculative Flow Matching**  
   *Divya Jyoti Bajpai, Shubham Agarwal, Apoorv Saxena, Kuldeep Kulkarni, Subrata Mitra, Manjesh Kumar Hanawal*  
   Published: `2026-02-01` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2602.01329v1) · [pdf](https://arxiv.org/pdf/2602.01329v1) · id: `2602.01329v1`
@@ -24,6 +27,9 @@ Total papers tracked: **106**
 - **DeepUrban: Interaction-Aware Trajectory Prediction and Planning for Automated Driving by Aerial Imagery**  
   *Constantin Selzer, Fabian B. Flohr*  
   Published: `2026-01-15` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.10554v1) · [pdf](https://arxiv.org/pdf/2601.10554v1) · id: `2601.10554v1`
+- **DeepUrban: Interaction-Aware Trajectory Prediction and Planning for Automated Driving by Aerial Imagery**  
+  *Constantin Selzer, Fabian B. Flohr*  
+  Published: `2026-01-15` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.10554v2) · [pdf](https://arxiv.org/pdf/2601.10554v2) · id: `2601.10554v2`
 - **How Human Motion Prediction Quality Shapes Social Robot Navigation Performance in Constrained Spaces**  
   *Andrew Stratton, Phani Teja Singamaneni, Pranav Goyal, Rachid Alami, Christoforos Mavrogiannis*  
   Published: `2026-01-14` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.09856v1) · [pdf](https://arxiv.org/pdf/2601.09856v1) · id: `2601.09856v1`

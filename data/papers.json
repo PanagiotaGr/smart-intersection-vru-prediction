@@ -6772,6 +6772,41 @@
       ],
       "pdf_url": "https://arxiv.org/pdf/2602.00993v1",
       "abs_url": "http://arxiv.org/abs/2602.00993v1"
+    },
+    "2602.03376v1": {
+      "arxiv_id": "2602.03376v1",
+      "title": "PlanTRansformer: Unified Prediction and Planning with Goal-conditioned Transformer",
+      "authors": [
+        "Constantin Selzer",
+        "Fabina B. Flohr"
+      ],
+      "summary": "Trajectory prediction and planning are fundamental yet disconnected components in autonomous driving. Prediction models forecast surrounding agent motion under unknown intentions, producing multimodal distributions, while planning assumes known ego objectives and generates deterministic trajectories. This mismatch creates a critical bottleneck: prediction lacks supervision for agent intentions, while planning requires this information. Existing prediction models, despite strong benchmarking performance, often remain disconnected from planning constraints such as collision avoidance and dynamic feasibility. We introduce Plan TRansformer (PTR), a unified Gaussian Mixture Transformer framework integrating goal-conditioned prediction, dynamic feasibility, interaction awareness, and lane-level topology reasoning. A teacher-student training strategy progressively masks surrounding agent commands during training to align with inference conditions where agent intentions are unavailable. PTR achieves 4.3%/3.5% improvement in marginal/joint mAP compared to the baseline Motion Transformer (MTR) and 15.5% planning error reduction at 5s horizon compared to GameFormer. The architecture-agnostic design enables application to diverse Transformer-based prediction models. Project Website: https://github.com/SelzerConst/PlanTRansformer",
+      "published_utc": "2026-02-03T10:55:05Z",
+      "updated_utc": "2026-02-03T10:55:05Z",
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2602.03376v1",
+      "abs_url": "http://arxiv.org/abs/2602.03376v1"
+    },
+    "2601.10554v2": {
+      "arxiv_id": "2601.10554v2",
+      "title": "DeepUrban: Interaction-Aware Trajectory Prediction and Planning for Automated Driving by Aerial Imagery",
+      "authors": [
+        "Constantin Selzer",
+        "Fabian B. Flohr"
+      ],
+      "summary": "The efficacy of autonomous driving systems hinges critically on robust prediction and planning capabilities. However, current benchmarks are impeded by a notable scarcity of scenarios featuring dense traffic, which is essential for understanding and modeling complex interactions among road users. To address this gap, we collaborated with our industrial partner, DeepScenario, to develop DeepUrban-a new drone dataset designed to enhance trajectory prediction and planning benchmarks focusing on dense urban settings. DeepUrban provides a rich collection of 3D traffic objects, extracted from high-resolution images captured over urban intersections at approximately 100 meters altitude. The dataset is further enriched with comprehensive map and scene information to support advanced modeling and simulation tasks. We evaluate state-of-the-art (SOTA) prediction and planning methods, and conducted experiments on generalization capabilities. Our findings demonstrate that adding DeepUrban to nuScenes can boost the accuracy of vehicle predictions and planning, achieving improvements up to 44.1 % / 44.3% on the ADE / FDE metrics. Website: https://iv.ee.hm.edu/deepurban",
+      "published_utc": "2026-01-15T16:18:42Z",
+      "updated_utc": "2026-02-03T10:22:16Z",
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2601.10554v2",
+      "abs_url": "http://arxiv.org/abs/2601.10554v2"
     }
   },
   "topics": {
@@ -7013,9 +7048,11 @@
         "2511.17045v3",
         "2601.21504v1",
         "2512.10350v5",
-        "2602.01329v1"
+        "2602.01329v1",
+        "2602.03376v1",
+        "2601.10554v2"
       ],
-      "latest_update": "2026-02-03"
+      "latest_update": "2026-02-04"
     },
     "intention_crossing_behavior": {
       "name": "Intention & Crossing Behavior",
@@ -7218,9 +7255,10 @@
         "2508.10427v3",
         "2512.02368v2",
         "2601.20367v1",
-        "2601.21346v1"
+        "2601.21346v1",
+        "2602.03376v1"
       ],
-      "latest_update": "2026-01-30"
+      "latest_update": "2026-02-04"
     }
   }
 }

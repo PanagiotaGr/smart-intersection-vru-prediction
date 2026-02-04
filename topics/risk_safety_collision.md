@@ -1,11 +1,14 @@
 # Risk-aware / Safety / Collision Prediction
 
-Updated: `2026-02-03` (timezone: `Europe/Athens`)
+Updated: `2026-02-04` (timezone: `Europe/Athens`)
 
-Total papers tracked: **123**
+Total papers tracked: **124**
 
 ---
 
+- **PlanTRansformer: Unified Prediction and Planning with Goal-conditioned Transformer**  
+  *Constantin Selzer, Fabina B. Flohr*  
+  Published: `2026-02-03` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2602.03376v1) · [pdf](https://arxiv.org/pdf/2602.03376v1) · id: `2602.03376v1`
 - **HPTune: Hierarchical Proactive Tuning for Collision-Free Model Predictive Control**  
   *Wei Zuo, Chengyang Li, Yikun Wang, Bingyang Cheng, Zeyi Ren, Shuai Wang, Derrick Wing Kwan Ng, Yik-Chung Wu*  
   Published: `2026-01-29` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.21346v1) · [pdf](https://arxiv.org/pdf/2601.21346v1) · id: `2601.21346v1`
