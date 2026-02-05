@@ -1,11 +1,14 @@
 # Interaction-aware & Social Models
 
-Updated: `2026-02-04` (timezone: `Europe/Athens`)
+Updated: `2026-02-05` (timezone: `Europe/Athens`)
 
-Total papers tracked: **108**
+Total papers tracked: **109**
 
 ---
 
+- **A Unified Complementarity-based Approach for Rigid-Body Manipulation and Motion Prediction**  
+  *Bingkun Huang, Xin Ma, Nilanjan Chakraborty, Riddhiman Laha*  
+  Published: `2026-02-04` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2602.04522v1) · [pdf](https://arxiv.org/pdf/2602.04522v1) · id: `2602.04522v1`
 - **PlanTRansformer: Unified Prediction and Planning with Goal-conditioned Transformer**  
   *Constantin Selzer, Fabina B. Flohr*  
   Published: `2026-02-03` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2602.03376v1) · [pdf](https://arxiv.org/pdf/2602.03376v1) · id: `2602.03376v1`

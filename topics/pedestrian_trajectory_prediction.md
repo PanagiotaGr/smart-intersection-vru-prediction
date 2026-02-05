@@ -1,11 +1,17 @@
 # Pedestrian Trajectory Prediction
 
-Updated: `2026-02-04` (timezone: `Europe/Athens`)
+Updated: `2026-02-05` (timezone: `Europe/Athens`)
 
-Total papers tracked: **86**
+Total papers tracked: **88**
 
 ---
 
+- **AGMA: Adaptive Gaussian Mixture Anchors for Prior-Guided Multimodal Human Trajectory Forecasting**  
+  *Chao Li, Rui Zhang, Siyuan Huang, Xian Zhong, Hongbo Jiang*  
+  Published: `2026-02-04` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2602.04204v1) · [pdf](https://arxiv.org/pdf/2602.04204v1) · id: `2602.04204v1`
+- **eCP: Informative uncertainty quantification via Equivariantized Conformal Prediction with pre-trained models**  
+  *Nikolaos Bousias, Lars Lindemann, George Pappas*  
+  Published: `2026-02-03` · Category: `cs.LG` · [abs](http://arxiv.org/abs/2602.03986v1) · [pdf](https://arxiv.org/pdf/2602.03986v1) · id: `2602.03986v1`
 - **Don't double it: Efficient Agent Prediction in Occlusions**  
   *Anna Rothenhäusler, Markus Mazzola, Andreas Look, Raghu Rajan, Joschka Bödecker*  
   Published: `2026-01-29` · Category: `cs.RO` · [abs](http://arxiv.org/abs/2601.21504v1) · [pdf](https://arxiv.org/pdf/2601.21504v1) · id: `2601.21504v1`

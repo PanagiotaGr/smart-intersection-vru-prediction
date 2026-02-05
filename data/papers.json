@@ -6807,6 +6807,86 @@
       ],
       "pdf_url": "https://arxiv.org/pdf/2601.10554v2",
       "abs_url": "http://arxiv.org/abs/2601.10554v2"
+    },
+    "2602.04204v1": {
+      "arxiv_id": "2602.04204v1",
+      "title": "AGMA: Adaptive Gaussian Mixture Anchors for Prior-Guided Multimodal Human Trajectory Forecasting",
+      "authors": [
+        "Chao Li",
+        "Rui Zhang",
+        "Siyuan Huang",
+        "Xian Zhong",
+        "Hongbo Jiang"
+      ],
+      "summary": "Human trajectory forecasting requires capturing the multimodal nature of pedestrian behavior. However, existing approaches suffer from prior misalignment. Their learned or fixed priors often fail to capture the full distribution of plausible futures, limiting both prediction accuracy and diversity. We theoretically establish that prediction error is lower-bounded by prior quality, making prior modeling a key performance bottleneck. Guided by this insight, we propose AGMA (Adaptive Gaussian Mixture Anchors), which constructs expressive priors through two stages: extracting diverse behavioral patterns from training data and distilling them into a scene-adaptive global prior for inference. Extensive experiments on ETH-UCY, Stanford Drone, and JRDB datasets demonstrate that AGMA achieves state-of-the-art performance, confirming the critical role of high-quality priors in trajectory forecasting.",
+      "published_utc": "2026-02-04T04:42:57Z",
+      "updated_utc": "2026-02-04T04:42:57Z",
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2602.04204v1",
+      "abs_url": "http://arxiv.org/abs/2602.04204v1"
+    },
+    "2602.03986v1": {
+      "arxiv_id": "2602.03986v1",
+      "title": "eCP: Informative uncertainty quantification via Equivariantized Conformal Prediction with pre-trained models",
+      "authors": [
+        "Nikolaos Bousias",
+        "Lars Lindemann",
+        "George Pappas"
+      ],
+      "summary": "We study the effect of group symmetrization of pre-trained models on conformal prediction (CP), a post-hoc, distribution-free, finite-sample method of uncertainty quantification that offers formal coverage guarantees under the assumption of data exchangeability. Unfortunately, CP uncertainty regions can grow significantly in long horizon missions, rendering the statistical guarantees uninformative. To that end, we propose infusing CP with geometric information via group-averaging of the pretrained predictor to distribute the non-conformity mass across the orbits. Each sample now is treated as a representative of an orbit, thus uncertainty can be mitigated by other samples entangled to it via the orbit inducing elements of the symmetry group. Our approach provably yields contracted non-conformity scores in increasing convex order, implying improved exponential-tail bounds and sharper conformal prediction sets in expectation, especially at high confidence levels. We then propose an experimental design to test these theoretical claims in pedestrian trajectory prediction.",
+      "published_utc": "2026-02-03T20:18:59Z",
+      "updated_utc": "2026-02-03T20:18:59Z",
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO",
+        "eess.SY"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2602.03986v1",
+      "abs_url": "http://arxiv.org/abs/2602.03986v1"
+    },
+    "2602.04522v1": {
+      "arxiv_id": "2602.04522v1",
+      "title": "A Unified Complementarity-based Approach for Rigid-Body Manipulation and Motion Prediction",
+      "authors": [
+        "Bingkun Huang",
+        "Xin Ma",
+        "Nilanjan Chakraborty",
+        "Riddhiman Laha"
+      ],
+      "summary": "Robotic manipulation in unstructured environments requires planners to reason jointly about free-space motion and sustained, frictional contact with the environment. Existing (local) planning and simulation frameworks typically separate these regimes or rely on simplified contact representations, particularly when modeling non-convex or distributed contact patches. Such approximations limit the fidelity of contact-mode transitions and hinder the robust execution of contact-rich behaviors in real time. This paper presents a unified discrete-time modeling framework for robotic manipulation that consistently captures both free motion and frictional contact within a single mathematical formalism (Unicomp). Building on complementarity-based rigid-body dynamics, we formulate free-space motion and contact interactions as coupled linear and nonlinear complementarity problems, enabling principled transitions between contact modes without enforcing fixed-contact assumptions. For planar patch contact, we derive a frictional contact model from the maximum power dissipation principle in which the set of admissible contact wrenches is represented by an ellipsoidal limit surface. This representation captures coupled force-moment effects, including torsional friction, while remaining agnostic to the underlying pressure distribution across the contact patch. The resulting formulation yields a discrete-time predictive model that relates generalized velocities and contact wrenches through quadratic constraints and is suitable for real-time optimization-based planning. Experimental results show that the proposed approach enables stable, physically consistent behavior at interactive speeds across tasks, from planar pushing to contact-rich whole-body maneuvers.",
+      "published_utc": "2026-02-04T13:10:57Z",
+      "updated_utc": "2026-02-04T13:10:57Z",
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2602.04522v1",
+      "abs_url": "http://arxiv.org/abs/2602.04522v1"
+    },
+    "2601.02082v2": {
+      "arxiv_id": "2601.02082v2",
+      "title": "Realistic adversarial scenario generation via human-like pedestrian model for autonomous vehicle control parameter optimisation",
+      "authors": [
+        "Yueyang Wang",
+        "Mehmet Dogar",
+        "Russell Darling",
+        "Gustav Markkula"
+      ],
+      "summary": "Autonomous vehicles (AVs) are rapidly advancing and are expected to play a central role in future mobility. Ensuring their safe deployment requires reliable interaction with other road users, not least pedestrians. Direct testing on public roads is costly and unsafe for rare but critical interactions, making simulation a practical alternative. Within simulation-based testing, adversarial scenarios are widely used to probe safety limits, but many prioritise difficulty over realism, producing exaggerated behaviours which may result in AV controllers that are overly conservative. We propose an alternative method, instead using a cognitively inspired pedestrian model featuring both inter-individual and intra-individual variability to generate behaviourally plausible adversarial scenarios. We provide a proof of concept demonstration of this method's potential for AV control optimisation, in closed-loop testing and tuning of an AV controller. Our results show that replacing the rule-based CARLA pedestrian with the human-like model yields more realistic gap acceptance patterns and smoother vehicle decelerations. Unsafe interactions occur only for certain pedestrian individuals and conditions, underscoring the importance of human variability in AV testing. Adversarial scenarios generated by this model can be used to optimise AV control towards safer and more efficient behaviour. Overall, this work illustrates how incorporating human-like road user models into simulation-based adversarial testing can enhance the credibility of AV evaluation and provide a practical basis to behaviourally informed controller optimisation.",
+      "published_utc": "2026-01-05T13:10:32Z",
+      "updated_utc": "2026-02-04T14:57:40Z",
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.RO"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2601.02082v2",
+      "abs_url": "http://arxiv.org/abs/2601.02082v2"
     }
   },
   "topics": {
@@ -6898,9 +6978,11 @@
         "2405.18945v1",
         "2405.17680v2",
         "2405.07164v1",
-        "2601.21504v1"
+        "2601.21504v1",
+        "2602.04204v1",
+        "2602.03986v1"
       ],
-      "latest_update": "2026-01-30"
+      "latest_update": "2026-02-05"
     },
     "cyclist_micromobility_prediction": {
       "name": "Cyclist & Micromobility Prediction",
@@ -7050,9 +7132,10 @@
         "2512.10350v5",
         "2602.01329v1",
         "2602.03376v1",
-        "2601.10554v2"
+        "2601.10554v2",
+        "2602.04522v1"
       ],
-      "latest_update": "2026-02-04"
+      "latest_update": "2026-02-05"
     },
     "intention_crossing_behavior": {
       "name": "Intention & Crossing Behavior",
@@ -7126,9 +7209,10 @@
         "2402.19002v2",
         "2402.12810v3",
         "2601.10521v2",
-        "2602.00993v1"
+        "2602.00993v1",
+        "2601.02082v2"
       ],
-      "latest_update": "2026-02-03"
+      "latest_update": "2026-02-05"
     },
     "risk_safety_collision": {
       "name": "Risk-aware / Safety / Collision Prediction",

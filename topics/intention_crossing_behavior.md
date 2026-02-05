@@ -1,8 +1,8 @@
 # Intention & Crossing Behavior
 
-Updated: `2026-02-04` (timezone: `Europe/Athens`)
+Updated: `2026-02-05` (timezone: `Europe/Athens`)
 
-Total papers tracked: **70**
+Total papers tracked: **71**
 
 ---
 
@@ -18,6 +18,9 @@ Total papers tracked: **70**
 - **Realistic adversarial scenario generation via human-like pedestrian model for autonomous vehicle control parameter optimisation**  
   *Yueyang Wang, Mehmet Dogar, Gustav Markkula*  
   Published: `2026-01-05` · Category: `cs.HC` · [abs](http://arxiv.org/abs/2601.02082v1) · [pdf](https://arxiv.org/pdf/2601.02082v1) · id: `2601.02082v1`
+- **Realistic adversarial scenario generation via human-like pedestrian model for autonomous vehicle control parameter optimisation**  
+  *Yueyang Wang, Mehmet Dogar, Russell Darling, Gustav Markkula*  
+  Published: `2026-01-05` · Category: `cs.HC` · [abs](http://arxiv.org/abs/2601.02082v2) · [pdf](https://arxiv.org/pdf/2601.02082v2) · id: `2601.02082v2`
 - **VIT-Ped: Visionary Intention Transformer for Pedestrian Behavior Analysis**  
   *Aly R. Elkammar, Karim M. Gamaleldin, Catherine M. Elias*  
   Published: `2026-01-05` · Category: `cs.CV` · [abs](http://arxiv.org/abs/2601.01989v1) · [pdf](https://arxiv.org/pdf/2601.01989v1) · id: `2601.01989v1`
